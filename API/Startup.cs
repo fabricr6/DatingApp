@@ -54,7 +54,7 @@ namespace API
 
             }); */
 
-            var d = "https://localhost:4200";
+            var d = "http://localhost:4200";
             var allowedDomains = Array.ConvertAll(d.Split(','), p => p.Trim());
           
 
