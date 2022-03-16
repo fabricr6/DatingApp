@@ -48,16 +48,21 @@ namespace API.Data
             .ToListAsync();
         }
 
-        public Task<AppUser> GetUserByIdAsync(int Id)
+        public async Task<AppUser> GetUserByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Users.FindAsync(id);
         }
 
         public async Task<AppUser> GetUserByUsernameAsync(string username)
         {
             return await _context.Users
-             .Include(p => p.Photos)
-            .SingleOrDefaultAsync(x => x.UserName == username);
+                .Include(p => p.Photos)
+                .SingleOrDefaultAsync(x => x.UserName == username);
+        }
+
+        public Task<IEnumerable<AppUser>> GetUsersAsync()
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<bool> SaveAllSync()
@@ -68,6 +73,11 @@ namespace API.Data
         public void update(AppUser user)
         {
             _context.Entry(user).State = EntityState.Modified;
+        }
+
+        public void Update(AppUser user)
+        {
+            throw new NotImplementedException();
         }
     }
 }

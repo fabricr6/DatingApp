@@ -34,7 +34,7 @@
 
             <form class="d-flex" *ngIf="(accountService.currentUser$ | async ) === null" #loginForm="ngForm" (ngSubmit)="login()" autocomplete="off">
                 <input name="username" class="form-control me-2 mx-2" type="text" placeholder="Username" [(ngModel)]="model.username" />
-                <input name="password" class="form-control me-2 mx-2" type="paassword" placeholder="Password" [(ngModel)]="model.password" />
+                <input name="password" class="form-control me-2 mx-2" type="password" placeholder="Password" [(ngModel)]="model.password" />
                 <button class="btn btn-outline-info" type="submit">Login</button>
             </form>
         </div>

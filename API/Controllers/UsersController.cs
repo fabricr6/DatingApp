@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    [Authorize]
+   
     public class UsersController : BaseApiController
     {
         //private readonly DataContext _context;
@@ -55,7 +55,7 @@ namespace API.Controllers
 
             // return _mapper.Map<MemberDto>(user);
 
-            return await _userRepository.GetMemberAsync();
+             return await _userRepository.GetMemberAsync(username);
 
         }
     }

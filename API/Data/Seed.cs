@@ -21,16 +21,17 @@ namespace API.Data
             var userData = await System.IO.File.ReadAllTextAsync("Data/UserSeedData.json");
             var users = JsonSerializer.Deserialize<List<AppUser>>(userData);
             logger.LogInformation(users.Count.ToString() + "******************************************************************************");
+            if (users == null) return;
             foreach (var user in users)
             {
                 using var hmac = new HMACSHA512();
 
                 user.UserName = user.UserName.ToLower();
-                user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("Pa$$w0rd")); //Password hardcoded not use
                 user.PasswordSalt = hmac.Key;
+                user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("Pa$$w0rd")); //Password hardcoded not use
 
                 logger.LogInformation("1");
-                context.Users.Add(user);
+                await context.Users.AddAsync(user);
 
 
             }
